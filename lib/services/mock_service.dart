@@ -2,22 +2,46 @@
 // TODO: MOCK USER SERVICE
 // ======================================================
 
-// 1. Import model User.
+// Import model User.
+import '../models/user.dart';
 
-// 2. Buat class bernama MockUserService.
 
-// 3. Buat method berikut:
-//
-//    Future<List<User>> fetchUsers({bool shouldFail = false})
-//
-// 4. Di dalam method:
-//    - Gunakan Future.delayed minimal 1 detik
-//    - Jika shouldFail == true
-//        -> throw Exception("Failed to fetch users")
-//    - Jika tidak gagal
-//        -> return minimal 3 data User dummy
+// Buat class bernama MockUserService.
+class MockUserService {
+// Buat method fetchUsers()
+  Future<List<User>> fetchUsers({bool shouldFail = false}) async {
 
-// 5. Data dummy harus dibuat dalam bentuk object User
-//    (bukan JSON string)
+// Future.delayed 
+// Ini mensimulasikan API call async
+  await Future.delayed(Duration(seconds: 1));
 
-// 6. Tambahkan komentar singkat menjelaskan bahwa ini simulasi async API call
+// jika shouldFail true, lempar exception untuk simulasi error
+  if (shouldFail) {
+      throw Exception("Failed to fetch users");
+    }
+  // jika tidak gagal, kembalikan list dummy User
+   return [
+      User(
+        id: "1",
+        email: "alice@example.com",
+        displayName: "Alice",
+        age: 21,
+        isActive: true,
+      ),
+      User(
+        id: "2",
+        email: "bob@example.com",
+        displayName: null,
+        age: 25,
+        isActive: false,
+      ),
+      User(
+        id: "3",
+        email: "charlie@example.com",
+        displayName: "Charlie",
+        age: 19,
+        isActive: true,
+      ),
+    ];
+  }
+}
